@@ -2,10 +2,29 @@
   "name": "task-scheduler",
   "version": "0.1.0",
   "description": "Task scheduler for programming methods",
-  "main": "index.js",
+  "main": "server.ts",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/BooleT37/task-scheduler.git"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npm run build:live",
+    "build:live": "nodemon --exec .\\node_modules\\.bin\\ts-node -- .\\src\\server.ts",
+    "build": "tsc -p .\\"
   },
   "author": "Alexey Levin",
-  "license": "UNLICENSED"
+  "license": "UNLICENSED",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "fs": "0.0.1-security"
+  },
+  "devDependencies": {
+    "@types/express": "^4.0.35",
+    "@types/node": "^7.0.7",
+    "nodemon": "^1.11.0",
+    "ts-node": "^2.1.0",
+    "typescript": "^2.2.1"
+  }
 }
