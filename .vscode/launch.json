@@ -8,20 +8,17 @@
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
-            "sourceMaps": true,
-            "stopOnEntry": true,
-            "console": "internalConsole",
             "cwd": "${workspaceRoot}",
-            "program": "${workspaceRoot}\\src\\server.ts",
-            "outFiles": ["${workspaceRoot}\\dest\\*.js"]
+            "program": "${workspaceRoot}/src/server.ts",
+            "outFiles": ["${workspaceRoot}/dest/**/*.js"]
         },
         {
             "type": "node",
             "request": "attach",
             "name": "Attach to Process",
             "address": "localhost",
-            "port": 5858,
-            "outFiles": []
+            "port": 8090,
+            "outFiles": ["${workspaceRoot}/dest/**/*.js"]
         }
     ]
 }
