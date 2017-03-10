@@ -6,7 +6,7 @@ import Task from './models/Task';
 var app = express();
 
 app.get('/', function (req, res) {
-    var tasks = JSON.parse(fs.readFileSync('data/sample_tasks.json', 'utf8')).map(jsonTask => new Task(jsonTask.number, jsonTask.duration));
+    var tasks = JSON.parse(fs.readFileSync('data/sample_tasks.json', 'utf8')).map(jsonTask => new Task(jsonTask.start, jsonTask.duration));
     var scheduler = new RandomScheduler();
     var schedule = scheduler.schedule(tasks);
     res.send(schedule);
