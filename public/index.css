@@ -2,6 +2,18 @@ body {
     font: 18px Segoe UI, Arial, sans-serif;
 }
 
+.wrapper {
+    max-width: 1280px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.topSection_left, .topSection_right {
+    display: inline-blok;
+    vertical-align: bottom;
+    width: 50%;
+}
+
 .table_title {
     text-align: center;
     font-size: 26px;
