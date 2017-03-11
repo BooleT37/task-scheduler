@@ -10,6 +10,7 @@ export default class IndexViewModel {
         this.tasks = tasks;
         this.schedule = schedule;
         this.files = files;
+        this.currentFile = currentFile;
     }
 
     public getTasks() {

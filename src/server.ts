@@ -5,6 +5,7 @@ import Task from './models/Task';
 import RandomScheduler from './schedulers/RandomScheduler';
 import IndexViewModel from "./viewModels/IndexViewModel";
 import FileNotFoundViewModel from "./viewModels/FileNotFoundViewModel";
+import RandomTasksGenerator from "./tasksGenerators/RandomTasksGenerator";
 
 var app = express();
 
@@ -36,6 +37,26 @@ app.get('/', function (req, res) {
         res.render('index.ejs', { model: model });
     }
 });
+
+app.get('/generate', function(req, res) {
+    var files = fs.readdirSync('data');
+    var index = 1;
+    var exists = true;
+    while (exists) {
+        try {
+            fs.accessSync(process.cwd() + '/data/generated_tasks_' + index.toString() + '.json', fs.constants.R_OK);
+            index++;
+        } catch (e) {
+            exists = false;
+        }
+    }
+    var filename = 'generated_tasks_' + index.toString() + '.json';
+    var filePath = process.cwd() + '/data/' + filename;
+    var tasksGenerator = new RandomTasksGenerator();
+    var tasks = tasksGenerator.generate();
+    fs.writeFileSync(filePath, JSON.stringify(tasks), { flag: 'wx' });
+    res.redirect("/?file=" + filename);
+})
 
 var server = app.listen(8090, function () {
    var host = server.address().address;
