@@ -11,7 +11,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npm run build:live",
     "watch": ".\\node_modules\\.bin\\ntsc -p ./ -w",
-    "build:live": "nodemon --exec .\\node_modules\\.bin\\ts-node -- .\\src\\server.ts",
+    "build:live": "nodemon -e js,css,html,ejs --exec .\\node_modules\\.bin\\ts-node -- .\\src\\server.ts",
     "build": "tsc -p .\\"
   },
   "author": "Alexey Levin",

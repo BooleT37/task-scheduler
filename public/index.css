@@ -1,0 +1,47 @@
+body {
+    font: 18px Segoe UI, Arial, sans-serif;
+}
+
+.table_title {
+    text-align: center;
+    font-size: 26px;
+    margin-top: 20px;
+}
+
+.tasks_table {
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+
+.tasks_table td {
+    border: solid 1px gray;
+    width: 40px;
+    height: 30px;
+}
+
+.activeTask {
+    background-color: orange;
+}
+
+.tasks_table td.taskIndex {
+    font-size: 16px;
+    text-align: right;
+    border: none;
+    color: darkgray;
+    padding-right: 4px;
+    width: 50px;
+}
+
+.tasks_table td.table_headCell {
+    text-align: center;
+    color: darkgray;
+    border: none;
+}
+
+.tasks_table td.table_headCell_first {
+    text-align: center;
+    color: darkgray;
+    border: none;
+    font-size: 12px;
+    width: 50px;
+}

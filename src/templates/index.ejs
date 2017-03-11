@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Планировщик заданий</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <div class="wrapper">
+    <div class="table_title">Задачи:</div>
+    <table class="tasks_table">
+      <% var tasksDuration = Math.max.apply(null, model.getTasks().map(task => task.getStart() + task.getDuration())); %>
+      <thead>
+        <tr>
+          <td class="table_headCell_first">такты →</td>
+          <% for (var i = 0; i < tasksDuration; i++) { %>
+            <td class="table_headCell"><%=i % 5 === 0 ? i : "" %></td>
+          <% } %>
+        </tr>
+      </thead>
+      <tbody>
+        <% model.getTasks().forEach((task, index) => { %>
+          <tr>
+            <td class="taskIndex"><%=index%></td>
+            <% for (var i = 0; i < tasksDuration; i++) { %>
+              <td class="<%= (task.getStart() <= i && i < task.getStart() + task.getDuration()) ? 'activeTask' : '' %>"></td>
+            <% } %>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+    <div class="table_title">План:</div>
+    <table class="tasks_table">
+      <% var schedule = model.getSchedule(); %>
+      <thead>
+        <tr>
+          <td class="table_headCell_first">такты →</td>
+          <% for (var i = 0; i < schedule.length; i++) { %>
+            <td class="table_headCell"><%=i % 5 === 0 ? i : "" %></td>
+          <% } %>
+        </tr>
+      </thead>
+      <tbody>
+        <% model.getTasks().forEach((task, index) => { %>
+          <tr>
+            <td class="taskIndex"><%=index%></td>
+            <% for (var i = 0; i < schedule.length; i++) { %>
+              <td class="<%= schedule[i] === index ? 'activeTask' : '' %>"></td>
+            <% } %>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  </div>
+</body>
