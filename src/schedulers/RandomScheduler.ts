@@ -23,9 +23,10 @@ class RandomScheduler implements Scheduler {
                 totalDuration++;
                 schedule.push(-1);
             } else {
-                var taskIndex = Math.floor(Math.random() * tasksCanComplete.length);
+                var taskIndex = tasksCanComplete[Math.floor(Math.random() * tasksCanComplete.length)];
+                var taskToRun = taskQueues[taskIndex];
                 schedule.push(taskIndex);
-                taskQueues[taskIndex].setDuration(taskQueues[taskIndex].getDuration() - 1);
+                taskToRun.setDuration(taskToRun.getDuration() - 1);
             }
             currentTick++;
         }

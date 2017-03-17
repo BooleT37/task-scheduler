@@ -1,4 +1,4 @@
 /node_modules/
 /dest/
 *.log
-/data/generated_tasks_*
+data/generated_tasks_*
