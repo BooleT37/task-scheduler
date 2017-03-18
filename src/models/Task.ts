@@ -16,7 +16,6 @@ class Task {
     }
 
     public setDuration(duration : number) {
-        console.log(`${this.duration} => ${duration}`);
         this.duration = duration;
     }
 }
