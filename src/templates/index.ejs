@@ -8,19 +8,33 @@
 </head>
 <body onload="onLoad()">
   <div class="wrapper">
-    <div class="fileSelectContainer">
-      <label>Файл:</label>
-      <select id="fileSelect">
-        <% model.getFiles().forEach((file, index) => { %>
-          <% if (model.getCurrentFile() === file) { %>
-            <option value="<%=file %>" selected><%=file %></option>
-          <% } else { %>
-            <option value="<%=file %>"><%=file %></option>
-          <% } %>
-        <% }); %>
-      </select>
+    <div class="controls">
+      <div class="fileSelectContainer">
+        <label>Файл:</label>
+        <select id="fileSelect">
+          <% model.getFiles().forEach((file, index) => { %>
+            <% if (model.getCurrentFile() === file) { %>
+              <option value="<%=file %>" selected><%=file %></option>
+            <% } else { %>
+              <option value="<%=file %>"><%=file %></option>
+            <% } %>
+          <% }); %>
+        </select><br/>
+        <a href="/generate">Сгенерировать новый</a>
+      </div>
+      <div class="schedulerSelectContainer">
+        <label>Планировщик:</label>
+        <select id="schedulerSelect">
+          <% model.getSchedulers().forEach((scheduler, index) => { %>
+            <% if (model.getCurrentScheduler() === scheduler.getValue()) { %>
+              <option value="<%=scheduler.getValue() %>" selected><%=scheduler.getName() %></option>
+            <% } else { %>
+              <option value="<%=scheduler.getValue() %>"><%=scheduler.getName() %></option>
+            <% } %>
+          <% }); %>
+        </select>
+      </div>
     </div>
-    <a href="/generate">Сгенерировать новый</a>
     <div class="table_title">Задачи:</div>
     <table class="tasks_table">
       <% var tasksDuration = Math.max.apply(null, model.getTasks().map(task => task.getStart() + task.getDuration())); %>
