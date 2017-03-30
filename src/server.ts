@@ -9,6 +9,8 @@ import FastestFirstScheduler from './schedulers/FastestFirstScheduler';
 import IndexViewModel from "./viewModels/IndexViewModel";
 import FileNotFoundViewModel from "./viewModels/FileNotFoundViewModel";
 import RandomTasksGenerator from "./tasksGenerators/RandomTasksGenerator";
+import MetricsCounter from "./MetricsCounter/MetricsCounter";
+import Metrics from "./models/Metrics";
 
 var app = express();
 
@@ -57,7 +59,10 @@ app.get('/', function (req, res) {
                 throw new Error(`Unknown scheduler: ${scheduler}`);
         }
         var schedule = scheduler.schedule(tasks);
-        var model = new IndexViewModel(tasks, schedule, files, fileName, availibleSchedulers, schedulerName);
+        var metrics: Metrics = {
+            delays: MetricsCounter.countDelays(tasks, schedule)
+        }
+        var model = new IndexViewModel(tasks, schedule, files, fileName, availibleSchedulers, schedulerName, metrics);
         res.render('index.ejs', { model: model });
     }
 });

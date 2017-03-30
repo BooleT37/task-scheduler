@@ -1,6 +1,8 @@
 import Task from '../models/Task';
 import SchedulerItemModel from '../models/SchedulerItemModel';
 
+import Metrics from '../models/Metrics';
+
 export default class IndexViewModel {
     private tasks: Task[];
     private schedule: number[];
@@ -8,14 +10,24 @@ export default class IndexViewModel {
     private currentFile: string;
     private schedulers: SchedulerItemModel[];
     private currentScheduler: string;
+    private metrics: Metrics;
 
-    constructor(tasks: Task[], schedule: number[], files: string[], currentFile: string, schedulers: SchedulerItemModel[], currentScheduler: string) {
-        this.tasks = tasks;
-        this.schedule = schedule;
-        this.files = files;
-        this.currentFile = currentFile;
-        this.schedulers = schedulers;
-        this.currentScheduler = currentScheduler;
+    constructor(
+        tasks: Task[],
+        schedule: number[],
+        files: string[],
+        currentFile: string,
+        schedulers: SchedulerItemModel[],
+        currentScheduler: string,
+        metrics: Metrics
+        ) {
+            this.tasks = tasks;
+            this.schedule = schedule;
+            this.files = files;
+            this.currentFile = currentFile;
+            this.schedulers = schedulers;
+            this.currentScheduler = currentScheduler;
+            this.metrics = metrics;
     }
 
     public getTasks() {
@@ -40,5 +52,9 @@ export default class IndexViewModel {
 
     public getCurrentScheduler() {
         return this.currentScheduler;
+    }
+
+    public getMetrics() {
+        return this.metrics;
     }
 }
